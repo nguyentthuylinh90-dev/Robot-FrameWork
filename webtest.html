@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng nhập </title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 50px; background-color: #f4f4f9;}
+        .container { 
+            background: white; 
+            padding: 30px; 
+            width: 350px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin: auto;
+        }
+        h2 { text-align: center; color: #333; }
+        input { 
+            margin-top: 10px; 
+            padding: 10px; 
+            width: 100%; 
+            box-sizing: border-box; 
+            border: 1px solid #ccc; 
+            border-radius: 4px;
+        }
+        button { 
+            margin-top: 20px; 
+            padding: 10px; 
+            width: 100%; 
+            background-color: #007bff; 
+            color: white; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-weight: bold; 
+        }
+        button:hover { background-color: #0056b3; }
+        #message { margin-top: 15px; font-weight: bold; text-align: center; }
+        .error { color: #dc3545; }
+        .success { color: #28a745; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Đăng Nhập </h2>
+        
+        <label for="username">Tên đăng nhập:</label>
+        <input type="text" id="username" placeholder="Nhập tài khoản...">
+        
+        <label for="password">Mật khẩu:</label>
+        <input type="password" id="password" placeholder="Nhập mật khẩu...">
+        
+        <button id="btnLogin" onclick="login()">Đăng nhập</button>
+        
+        <div id="message"></div>
+    </div>
+
+    <script>
+        function login() {
+            let user = document.getElementById("username").value.trim();
+            let pass = document.getElementById("password").value;
+            let msgDiv = document.getElementById("message");
+
+            // Xóa class cũ
+            msgDiv.className = "";
+            msgDiv.innerText = "";
+
+            if (user === "" || pass === "") {
+                msgDiv.innerText = "Lỗi: Vui lòng nhập đầy đủ thông tin!";
+                msgDiv.classList.add("error");
+            } 
+            // CỐ TÌNH TẠO LỖI LOGIC Ở ĐÂY: Dùng || (HOẶC) thay vì && (VÀ)
+            // Lập trình viên code nhầm: Chỉ cần đúng User HOẶC đúng Pass là cho vào!
+            else if (user === "Admin" || pass === "admin123") {
+                msgDiv.innerText = "Đăng nhập thành công! Chào mừng Admin.";
+                msgDiv.classList.add("success");
+            } 
+            // CỐ TÌNH TẠO BACKDOOR (Cửa sau)
+            // Nhập tài khoản là Hacker thì pass là gì cũng vào được
+            else if (user === "Hacker") {
+                msgDiv.innerText = "Đăng nhập thành công! Chào mừng Admin.";
+                msgDiv.classList.add("success");
+            }
+            else {
+                msgDiv.innerText = "Lỗi: Tài khoản không tồn tại!";
+                msgDiv.classList.add("error");
+            }
+        }
+    </script>
+</body>
+</html>
